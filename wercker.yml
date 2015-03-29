@@ -16,7 +16,7 @@ deploy:
     - script:
         name: fetch release tag
         code: |
-            export RELEASE_TAG=$(curl https://api.github.com/repos/ainoya/walter/tags | jq ".[] | select(.commit.sha == \"${WERCKER_GIT_COMMIT}\") | .name")
+            export RELEASE_TAG=$(curl https://api.github.com/repos/ainoya/walter/tags | jq -r ".[] | select(.commit.sha == \"${WERCKER_GIT_COMMIT}\") | .name")
     - wercker/github-create-release:
         token: $GITHUB_TOKEN
         tag: $RELEASE_TAG
