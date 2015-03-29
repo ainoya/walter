@@ -14,7 +14,7 @@ deploy:
   steps:
     # reference: https://github.com/motemen/ghq/blob/beee539aead9c3940a0c4706357c5753999f6c85/wercker.yml
     - script:
-        name: restore release tag
+        name: fetch release tag
         code: |
             export RELEASE_TAG=$(curl https://api.github.com/repos/ainoya/walter/tags | jq ".[] | select(.commit.sha == \"${WERCKER_GIT_COMMIT}\") | .name")
     - wercker/github-create-release:
